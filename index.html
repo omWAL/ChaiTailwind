@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChaiCSS - Runtime CSS Engine Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .demo-container {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 50px;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    /* Base card styling in CSS for structure */
+    .card {
+      background: white;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .icon {
+      font-size: 4rem;
+    }
+
+    /* Code display section */
+    .code-section {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 40px;
+      font-family: 'Courier New', monospace;
+      overflow-x: auto;
+    }
+
+    .code-section h2 {
+      color: #4ec9b0;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .code-line {
+      line-height: 1.6;
+      color: #ce9178;
+      margin-bottom: 10px;
+    }
+
+    .code-line .keyword {
+      color: #569cd6;
+    }
+
+    .code-line .class-name {
+      color: #4ec9b0;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <!-- Header -->
+    <div class="header">
+      <h1>🎨 ChaiCSS Engine</h1>
+      <p>Lightweight, utility-first runtime CSS with chai-* classes</p>
+    </div>
+
+    <!-- Feature Cards Grid -->
+    <div class="cards-grid">
+      <!-- Feature Card 1 -->
+      <div class="card">
+        <div class="card-image">
+          <span class="icon">⚡</span>
+        </div>
+        <div class="card-content chai-p-24">
+          <h3 class="chai-fs-20 chai-fw-700 chai-text-333333 chai-mb-12">
+            Lightning Fast
+          </h3>
+          <p class="chai-fs-14 chai-text-666666 chai-mb-16 chai-lh-1-6">
+            Runtime CSS parsing happens instantly on DOM load with zero build step required.
+          </p>
+          <div class="chai-display-flex chai-gap-8">
+            <span class="chai-bg-667eea chai-text-ffffff chai-p-6-12 chai-rounded-4 chai-fs-12">
+              No Build
+            </span>
+            <span class="chai-bg-764ba2 chai-text-ffffff chai-p-6-12 chai-rounded-4 chai-fs-12">
+              Runtime
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Card 2 -->
+      <div class="card">
+        <div class="card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+          <span class="icon">🎯</span>
+        </div>
+        <div class="card-content chai-p-24">
+          <h3 class="chai-fs-20 chai-fw-700 chai-text-333333 chai-mb-12">
+            Utility-First
+          </h3>
+          <p class="chai-fs-14 chai-text-666666 chai-mb-16 chai-lh-1-6">
+            Simple, predictable classes for margins, padding, colors, and layout utilities.
+          </p>
+          <div class="chai-display-flex chai-gap-8">
+            <span class="chai-bg-f093fb chai-text-ffffff chai-p-6-12 chai-rounded-4 chai-fs-12">
+              Margins
+            </span>
+            <span class="chai-bg-f5576c chai-text-ffffff chai-p-6-12 chai-rounded-4 chai-fs-12">
+              Padding
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Card 3 -->
+      <div class="card">
+        <div class="card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+          <span class="icon">🧹</span>
+        </div>
+        <div class="card-content chai-p-24">
+          <h3 class="chai-fs-20 chai-fw-700 chai-text-333333 chai-mb-12">
+            Auto Cleanup
+          </h3>
+          <p class="chai-fs-14 chai-text-666666 chai-mb-16 chai-lh-1-6">
+            ChaiCSS classes are automatically removed after applying styles for a clean DOM.
+          </p>
+          <div class="chai-display-flex chai-gap-8">
+            <span class="chai-bg-4facfe chai-text-ffffff chai-p-6-12 chai-rounded-4 chai-fs-12">
+              Clean DOM
+            </span>
+            <span class="chai-bg-00f2fe chai-text-ffffff chai-p-6-12 chai-rounded-4 chai-fs-12">
+              Inline Style
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Feature Card (Large) -->
+    <div class="card chai-mt-50 chai-shadow-0-20px-60px-rgba-0-0-0-0-3">
+      <div class="card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 250px;">
+        <span class="icon" style="font-size: 5rem;">✨</span>
+      </div>
+      <div class="card-content chai-p-40">
+        <h2 class="chai-fs-32 chai-fw-700 chai-text-333333 chai-mb-16">
+          Feature Card Demo
+        </h2>
+        <p class="chai-fs-16 chai-text-555555 chai-mb-24 chai-lh-1-8">
+          This entire card is styled with ChaiCSS utility classes! Each element uses chai-* classes 
+          that are parsed at runtime and converted to inline styles. The classes are then removed 
+          automatically, leaving a clean DOM structure with applied styles.
+        </p>
+        
+        <!-- Styled list -->
+        <div class="chai-mb-24">
+          <div class="chai-mb-12 chai-display-flex chai-items-center">
+            <span class="chai-text-667eea chai-fs-24 chai-mr-12">✓</span>
+            <span class="chai-fs-14 chai-text-333333 chai-fw-600">
+              Smart value parsing: numbers get px, units are preserved
+            </span>
+          </div>
+          <div class="chai-mb-12 chai-display-flex chai-items-center">
+            <span class="chai-text-764ba2 chai-fs-24 chai-mr-12">✓</span>
+            <span class="chai-fs-14 chai-text-333333 chai-fw-600">
+              Multi-part values: chai-border-2px-solid-blue works perfectly
+            </span>
+          </div>
+          <div class="chai-display-flex chai-items-center">
+            <span class="chai-text-f5576c chai-fs-24 chai-mr-12">✓</span>
+            <span class="chai-fs-14 chai-text-333333 chai-fw-600">
+              Shorthand properties: m, p, mt, mb, ml, mr, pt, pb, pl, pr all supported
+            </span>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="chai-display-flex chai-gap-12 chai-mt-30">
+          <button 
+            class="chai-bg-667eea chai-text-ffffff chai-p-12-24 chai-rounded-6 chai-fw-600 chai-fs-14 chai-display-inline-block"
+            style="border: none; cursor: pointer; transition: background-color 0.3s ease;"
+            onmouseover="this.style.backgroundColor='#5568d3'"
+            onmouseout="this.style.backgroundColor='#667eea'"
+          >
+            Get Started
+          </button>
+          <button 
+            class="chai-bg-ffffff chai-text-667eea chai-p-12-24 chai-rounded-6 chai-fw-600 chai-fs-14 chai-display-inline-block"
+            style="border: 2px solid #667eea; cursor: pointer; transition: all 0.3s ease;"
+            onmouseover="this.style.backgroundColor='#f5f5f5'"
+            onmouseout="this.style.backgroundColor='#ffffff'"
+          >
+            Learn More
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code Examples Section -->
+    <div class="code-section">
+      <h2>📝 Example Usage</h2>
+      
+      <div class="code-line">
+        <span class="keyword">&lt;div</span>
+        <span class="class-name"> class</span>=<span>"</span>
+        chai-p-20 chai-bg-white chai-rounded-8 chai-shadow-lg
+        <span>"</span>
+        <span class="keyword">&gt;</span>
+      </div>
+      
+      <div class="code-line">
+        <span style="margin-left: 20px;"><span class="keyword">&lt;h1</span>
+        <span class="class-name"> class</span>=<span>"</span>
+        chai-fs-28 chai-text-333333 chai-fw-700 chai-mb-16
+        <span>"</span>
+        <span class="keyword">&gt;</span>
+      </div>
+      
+      <div class="code-line">
+        <span style="margin-left: 40px;">Hello ChaiCSS</span>
+      </div>
+      
+      <div class="code-line">
+        <span style="margin-left: 20px;"><span class="keyword">&lt;/h1&gt;</span>
+      </div>
+      
+      <div class="code-line">
+        <span style="margin-left: 20px;"><span class="keyword">&lt;p</span>
+        <span class="class-name"> class</span>=<span>"</span>
+        chai-fs-16 chai-text-666666 chai-lh-1-6
+        <span>"</span>
+        <span class="keyword">&gt;</span>
+      </div>
+      
+      <div class="code-line">
+        <span style="margin-left: 40px;">Styled with runtime utility classes!</span>
+      </div>
+      
+      <div class="code-line">
+        <span style="margin-left: 20px;"><span class="keyword">&lt;/p&gt;</span>
+      </div>
+      
+      <div class="code-line">
+        <span class="keyword">&lt;/div&gt;</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align: center; color: white; margin-top: 50px; font-size: 14px; opacity: 0.8;">
+      <p>ChaiCSS Engine • Inspect the HTML to see how chai-* classes are removed after rendering</p>
+    </div>
+  </div>
+
+  <!-- Load the ChaiCSS engine -->
+  <script src="chai.js"></script>
+</body>
+</html>
